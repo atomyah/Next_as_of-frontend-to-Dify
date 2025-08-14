@@ -1,0 +1,62 @@
+data: {"event": "workflow_started", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"id": "65abf48b-99c6-4262-b0f1-27acd389a203", "workflow_id": "64002aad-250f-4cda-a430-df074035f73a", "sequence_number": 23, "inputs": {"query": "\u30c6\u30b9\u30c8\u3067\u3059", "sys.files": [], "sys.user_id": "abc-123", "sys.app_id": "ca30cb1c-7f22-4c6d-b6ff-ef8d8828374a", "sys.workflow_id": "64002aad-250f-4cda-a430-df074035f73a", "sys.workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203"}, "created_at": 1755071557}}
+
+data: {"event": "node_started", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"id": "f2d6a747-26be-4e88-8619-986203bf4849", "node_id": "1747199269647", "node_type": "start", "title": "\u958b\u59cb", "index": 1, "predecessor_node_id": null, "inputs": null, "created_at": 1755071557, "extras": {}, "parallel_id": null, "parallel_start_node_id": null, "parent_parallel_id": null, "parent_parallel_start_node_id": null, "iteration_id": null, "loop_id": null, "parallel_run_id": null, "agent_strategy": null}}
+
+data: {"event": "node_finished", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"id": "f2d6a747-26be-4e88-8619-986203bf4849", "node_id": "1747199269647", "node_type": "start", "title": "\u958b\u59cb", "index": 1, "predecessor_node_id": null, "inputs": {"query": "\u30c6\u30b9\u30c8\u3067\u3059", "sys.files": [], "sys.user_id": "abc-123", "sys.app_id": "ca30cb1c-7f22-4c6d-b6ff-ef8d8828374a", "sys.workflow_id": "64002aad-250f-4cda-a430-df074035f73a", "sys.workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203"}, "process_data": null, "outputs": {"query": "\u30c6\u30b9\u30c8\u3067\u3059", "sys.files": [], "sys.user_id": "abc-123", "sys.app_id": "ca30cb1c-7f22-4c6d-b6ff-ef8d8828374a", "sys.workflow_id": "64002aad-250f-4cda-a430-df074035f73a", "sys.workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203"}, "status": "succeeded", "error": null, "elapsed_time": 0.040177, "execution_metadata": null, "created_at": 1755071557, "finished_at": 1755071557, "files": [], "parallel_id": null, "parallel_start_node_id": null, "parent_parallel_id": null, "parent_parallel_start_node_id": null, "iteration_id": null, "loop_id": null}}
+
+data: {"event": "node_started", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"id": "db0725d3-f81e-44cc-92d8-f2ab30ba0d00", "node_id": "1747199272527", "node_type": "llm", "title": "LLM", "index": 2, "predecessor_node_id": "1747199269647", "inputs": null, "created_at": 1755071557, "extras": {}, "parallel_id": null, "parallel_start_node_id": null, "parent_parallel_id": null, "parent_parallel_start_node_id": null, "iteration_id": null, "loop_id": null, "parallel_run_id": null, "agent_strategy": null}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\u30c6", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\u30b9\u30c8", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\u304c", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\u6210\u529f", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\u3057\u307e\u3057\u305f", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\uff01", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\u4f55", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\u304b", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\u304a", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\u624b", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\u4f1d", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\u3044", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\u3067\u304d", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\u308b", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\u3053\u3068", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\u304c", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\u3042", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\u308c\u3070", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\u6559", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\u3048\u3066", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\u304f\u3060\u3055\u3044", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "\u3002", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "text_chunk", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"text": "", "from_variable_selector": ["1747199272527", "text"]}}
+
+data: {"event": "node_finished", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"id": "db0725d3-f81e-44cc-92d8-f2ab30ba0d00", "node_id": "1747199272527", "node_type": "llm", "title": "LLM", "index": 2, "predecessor_node_id": "1747199269647", "inputs": null, "process_data": {"model_mode": "chat", "prompts": [{"role": "user", "text": "\u30c6\u30b9\u30c8\u3067\u3059", "files": []}], "model_provider": "langgenius/openai/openai", "model_name": "gpt-4o-mini"}, "outputs": {"text": "\u30c6\u30b9\u30c8\u304c\u6210\u529f\u3057\u307e\u3057\u305f\uff01\u4f55\u304b\u304a\u624b\u4f1d\u3044\u3067\u304d\u308b\u3053\u3068\u304c\u3042\u308c\u3070\u6559\u3048\u3066\u304f\u3060\u3055\u3044\u3002", "usage": {"prompt_tokens": 10, "prompt_unit_price": "0.15", "prompt_price_unit": "0.000001", "prompt_price": "0.0000015", "completion_tokens": 22, "completion_unit_price": "0.6", "completion_price_unit": "0.000001", "completion_price": "0.0000132", "total_tokens": 32, "total_price": "0.0000147", "currency": "USD", "latency": 1.3165681990012672}, "finish_reason": "stop"}, "status": "succeeded", "error": null, "elapsed_time": 1.409531, "execution_metadata": {"total_tokens": 32, "total_price": "0.0000147", "currency": "USD"}, "created_at": 1755071557, "finished_at": 1755071558, "files": [], "parallel_id": null, "parallel_start_node_id": null, "parent_parallel_id": null, "parent_parallel_start_node_id": null, "iteration_id": null, "loop_id": null}}
+
+data: {"event": "node_started", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"id": "f770ed73-2e63-4d3f-b11a-2891d31c29d1", "node_id": "1747199399529", "node_type": "end", "title": "\u7d42\u4e86", "index": 3, "predecessor_node_id": "1747199272527", "inputs": null, "created_at": 1755071558, "extras": {}, "parallel_id": null, "parallel_start_node_id": null, "parent_parallel_id": null, "parent_parallel_start_node_id": null, "iteration_id": null, "loop_id": null, "parallel_run_id": null, "agent_strategy": null}}
+
+data: {"event": "node_finished", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"id": "f770ed73-2e63-4d3f-b11a-2891d31c29d1", "node_id": "1747199399529", "node_type": "end", "title": "\u7d42\u4e86", "index": 3, "predecessor_node_id": "1747199272527", "inputs": {"result": "\u30c6\u30b9\u30c8\u304c\u6210\u529f\u3057\u307e\u3057\u305f\uff01\u4f55\u304b\u304a\u624b\u4f1d\u3044\u3067\u304d\u308b\u3053\u3068\u304c\u3042\u308c\u3070\u6559\u3048\u3066\u304f\u3060\u3055\u3044\u3002"}, "process_data": null, "outputs": {"result": "\u30c6\u30b9\u30c8\u304c\u6210\u529f\u3057\u307e\u3057\u305f\uff01\u4f55\u304b\u304a\u624b\u4f1d\u3044\u3067\u304d\u308b\u3053\u3068\u304c\u3042\u308c\u3070\u6559\u3048\u3066\u304f\u3060\u3055\u3044\u3002"}, "status": "succeeded", "error": null, "elapsed_time": 0.013021, "execution_metadata": null, "created_at": 1755071558, "finished_at": 1755071558, "files": [], "parallel_id": null, "parallel_start_node_id": null, "parent_parallel_id": null, "parent_parallel_start_node_id": null, "iteration_id": null, "loop_id": null}}
+
+data: {"event": "workflow_finished", "workflow_run_id": "65abf48b-99c6-4262-b0f1-27acd389a203", "task_id": "ec5d2be5-1341-493e-a760-dfe8d2329e62", "data": {"id": "65abf48b-99c6-4262-b0f1-27acd389a203", "workflow_id": "64002aad-250f-4cda-a430-df074035f73a", "sequence_number": 23, "status": "succeeded", "outputs": {"result": "\u30c6\u30b9\u30c8\u304c\u6210\u529f\u3057\u307e\u3057\u305f\uff01\u4f55\u304b\u304a\u624b\u4f1d\u3044\u3067\u304d\u308b\u3053\u3068\u304c\u3042\u308c\u3070\u6559\u3048\u3066\u304f\u3060\u3055\u3044\u3002"}, "error": null, "elapsed_time": 1.4366022100002738, "total_tokens": 32, "total_steps": 3, "created_by": {"id": "d6d560e3-4a99-4af1-926d-39fd88b2e884", "user": "abc-123"}, "created_at": 1755071557, "finished_at": 1755071558, "exceptions_count": 0, "files": []}}
+
