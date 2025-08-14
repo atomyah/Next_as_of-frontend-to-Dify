@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 const DIFY_API_KEY = process.env.DIFY_API_WORKFLOW_KEY
 const endpoint = `${process.env.DIFY_API_URL}/workflows/run`
 
-export async function GET(request: NextRequest){   // 関数名をPOSTにすると、Next.jsが自動的にPOSTリクエストを処理する
+export async function GET(request: NextRequest){   // 関数名をGETにすると、Next.jsが自動的にGETリクエストを処理する
     
     try{
         // GETなのでbody使えない.以下はBlocking（POST）の場合のコード
@@ -13,7 +13,7 @@ export async function GET(request: NextRequest){   // 関数名をPOSTにする�
         const query = searchParams.get('query');    // キーがqueryのパラメータを取得
 
         // DifyワークフローAPI接続
-        const response = await fetch(endpoint, {    // DifyのAPIからフェッチ。Difyからの返答はresponseに
+        const response = await fetch(endpoint, {    // DifyのAPIからフェッチ。返答はresponseに入ってる
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -24,13 +24,13 @@ export async function GET(request: NextRequest){   // 関数名をPOSTにする�
                     // 入力フィールドの変数名
                     query: query
                 },
-                response_mode: 'streaming',
+                response_mode: 'streaming', // ←ここだけ変更
                 user: 'user-123'
             })
         })
 
         // ストリーミングレスポンスをnew Responseでそのまま返す
-        return new Response(response.body, {
+        return new Response(response.body, {    // Blockingの場合はreturn NextResponse.json()だが、ナマのResponseを返す必要がある
             headers: {
                 "Content-Type": "text/event-stream", // Content-Typeは"text/event-stream"に
                 "Cache-Control": "no-cache, no-transform", //キャッシュ無効化

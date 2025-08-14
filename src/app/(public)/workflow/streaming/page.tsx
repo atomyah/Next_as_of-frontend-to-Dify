@@ -1,6 +1,6 @@
 import WorkflowStreaming from "@/components/WorkflowStreaming"
 
-export default function WorkflowPage() {
+export default function WorkflowStreamingPage() {
     return (
     <main className="min-h-screen flex items-center justify-center p-4 bg-gray-50">
         <div className="max-w-4xl w-full">
