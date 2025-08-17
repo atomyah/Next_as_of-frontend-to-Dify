@@ -61,7 +61,7 @@ export function useWorkflowStream(){
     
     // イベントデータの内容で処理を変える. 引数にはEventSourceType型を指定（しないと上のhandleEventData(eventData)でエラー）
     const handleEventData = (eventData: EventSourceType) => { // eventDataはチャンクのこと
-        console.log('■イベント受信ーhandleEventData内のeventData.eventは：', eventData.event)
+        // console.log('■イベント受信ーhandleEventData内のeventData.eventは：', eventData.event)
 
         // LLMがひとつの場合は'text_chunk'イベントが無数にある。
         if(eventData.event === 'text_chunk'){   // data:{"event":"text_chunk", "data":{"text":"チャンクのテキスト"}}

@@ -1,0 +1,10 @@
+/////////////////////////////////////////////////////////////////////////
+////// ユーザー登録ページ（<RegisterForm />を埋め込んでるだけ）
+/////////////////////////////////////////////////////////////////////////
+import RegisterForm from '@/components/auth/RegisterForm' // ユーザー登録フォームコンポーネントのインポート
+
+export default function RegisterPage() {
+  return (
+      <RegisterForm />
+  )
+}

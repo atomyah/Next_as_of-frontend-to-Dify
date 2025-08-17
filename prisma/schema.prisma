@@ -1,0 +1,53 @@
+/////////////////////////////////////////////////////////////////////////
+////// Prismaにテーブルのスキーマを定義するコード
+/////////////////////////////////////////////////////////////////////////
+
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  // output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Userテーブルのスキーマを作成
+model User {
+  id String @id @default(cuid()) // cuidで主キーとして設定
+  email String @unique           // @unique制約でデータベース全体で重複不可
+  password String
+  name String
+  role UserRole @default(USER)    // デフォルト値はUSER（一般ユーザー）
+  createdAt DateTime @default(now())  // レコード作成日時を自動記録
+  updatedAt DateTime @updatedAt       // @updatedAtで、レコードが更新されるたびに自動的に現在の日時が設定される
+  conversations Conversation[] // リレーション(1対多のリレーション（1ユーザーが複数の会話を持てる)
+  @@map("users")  // データベース上のテーブル名を"users"に設定. Prismaのモデル名"User"とDB上のテーブル名を分離
+}
+enum UserRole { // enum（列挙型）：roleはUserRoleの中の選択肢からしか値を選べないようにしている。
+  ADMIN
+  USER
+}
+
+// Conversationテーブルのスキーマ作成
+model Conversation {
+  id String @id @default(cuid())    // このテーブルのユニークID
+  difyConversationId String @unique // Dify APIから返される会話ID
+  userId String                     // この会話の所有者ユーザーのID
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade) // リレーション。Conversationテーブルの[userId]が参照先Userテーブルの[id]を参照している。onDelete: Cascade - ユーザーが削除されたら、その会話も自動削除. ここのuserにはuserテーブルの１ユーザーのレコード全てが格納される。
+  title String?
+  totalTokens Int @default(0) // この会話で使用されたトークンの合計
+  totalCost Float @default(0) // この会話のコスト合計
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([difyConversationId, userId])  // 複合制約. 同じユーザーが同じDify会話IDを重複して持てない厳しい制約。
+  @@map("conversations")  // データベース上のテーブル名を"conversations"に設定. Prismaのモデル名"Conversation"とDB上のテーブル名を分離
+}
