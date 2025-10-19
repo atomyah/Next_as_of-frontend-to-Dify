@@ -7,7 +7,7 @@ import { auth } from '@/auth' // auth.ts„ÅÆ{ auth, signIn, signOut, handlers }„Å
 
 export default async function DashboardPage() {
   const session = await auth()
-  const userId = session?.user?.id as string
+  // const userId = session?.user?.id as string
 
   return (
     <div className="max-w-5xl mx-auto p-6">

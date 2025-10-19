@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////////
 ////// ログインページ（<LoginForm />コンポーネントそのもの）
-///// React 19 の useActionState を使ってログインフォームを作成している
+///// React19のuseActionState を使ってログインフォームを作成している
 ////  → メリット：preventDefault() や手動のsubmitハンドラーが不要。
 /////////////////////////////////////////////////////////////////////////
 
@@ -14,15 +14,16 @@ import { useActionState } from 'react'
 import { authenticate } from '@/lib/actions/authenticate' // サーバーアクション（lib/actions/authenticate.ts）
 
 // useActionStateの挙動：
-// １．isPending が true になる（ローディング開始）
-// ２．formAction が authenticate サーバーアクションを呼び出す
-// ３．フォームデータが自動的に authenticate の formData 引数に渡される（lib/actions/authenticate.tsに
+// １．isPendingがtrue になる（ローディング開始）
+// ２．formActionがauthenticateサーバーアクションを呼び出す
+// ３．フォームデータが自動的にauthenticateのformData引数に渡される（lib/actions/authenticate.tsに
 //     await signIn('credentials', formData)のコードがある）
 // authenticate の挙動：
 // authenticate(prevState: string | undefined, formData: FormData,) {await signIn('credentials', formData); 
 // // ↑ signIn('credentials', formData)でユーザーのログイン情報（メールアドレスとパスワード）を検証
 export function LoginForm() {
-    const [errorMessage, formAction, isPending] = useActionState(
+    // ESLintエラーの解消のためconst [errorMessage, formAction, isPending] = useActionStateをconst [errorMessage, formAction] = useActionStateに。
+    const [errorMessage, formAction] = useActionState(
         authenticate,   // サーバーアクション関数
         undefined,      // エラーメッセージの初期値
     );

@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////
-////// auth.config.tsでは主に認証ガードの設定のようなことをしている
+////// auth.config.tsでは主に認証ガード設定のようなことをしている
 /////////////////////////////////////////////////////////////////
 
 
@@ -18,10 +18,11 @@ export const authConfig = {
 
             const isOnDashboard = nextUrl.pathname.startsWith('/dashboard') 
                 || nextUrl.pathname.startsWith('/manage') // /dashboard/* と /manage/* のページはログインしていることが必須
+                || nextUrl.pathname.startsWith('/chat') // セクション４のチャットフローAPIにあたって追加。'/chat/*'もログインしてないと見れない
             
-            if (isOnDashboard) {
-                if (isLoggedIn) return true;  // ログイン済み → アクセス許可
-                return Response.redirect(new URL('/login', nextUrl)); // 修正箇所 // 未ログイン → /login にリダイレクト
+            if (isOnDashboard) { // 「ダッシュボードにアクセスしようとしている場合」
+                if (isLoggedIn) return true;  // 「さらにログインもしている場合」→ アクセス許可
+                return Response.redirect(new URL('/login', nextUrl)); // `if (isLoggedIn)`がfalseの場合 →「ログインしていない場合」→/loginにリダイレクト
             } else if (isLoggedIn && nextUrl.pathname === '/login' ) { 
                 return Response.redirect(new URL('/dashboard', nextUrl)); // ログイン済み → /login にアクセスした場合は /dashboard にリダイレクト
             }

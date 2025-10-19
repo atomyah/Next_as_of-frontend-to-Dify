@@ -1,9 +1,15 @@
 /////////////////////////////////////////////////////////////////////////
 ////// 実際にユーザーがいるか、あるいはパスワードが合っているかのチェックコード
+///// authenticate.tsからsignIn関数を呼び出される。ちなみにauthenticate.tsは
+///// LoginForm.tsxのフォームから呼び出される
 /////////////////////////////////////////////////////////////////////////
 
 import NextAuth from 'next-auth';
 import { authConfig } from './auth.config';
+// Credentialsは、NextAuth が提供する「メール・パスワード認証」のプロバイダー.
+// 他のプロバイダーの例: ↓
+// import Google from 'next-auth/providers/google';
+// import GitHub from 'next-auth/providers/github';
 import Credentials from 'next-auth/providers/credentials';
 import { z } from 'zod';
 import { prisma } from './lib/prisma'; 
@@ -17,9 +23,16 @@ async function getUser(email: string) { // PrismaのgetUser関数を呼び出し
 
 export const { auth, signIn, signOut, handlers } = NextAuth({
     ...authConfig,
+
+    // ESLintエラーの解消のため、trustHostを追加
+    trustHost: true,
+    
     providers: [
+        // GoogleやGitHubサインインを行なう場合は以下のような設定を書く。
+        // Google({ clientId: '...', clientSecret: '...' }),
+        // GitHub({ clientId: '...', clientSecret: '...' }),
         Credentials({
-            async authorize(credentials) {
+            async authorize(credentials) {  // credentialにはユーザーがログインフォームで入力した情報がある。中身例：{ email: "user@example.com", password: "password123" }
             // メールアドレスとパスワードをZodで検証
             const parsedCredentials = z
             .object({ email: z.string().email(), password: z.string().min(8) })

@@ -5,6 +5,7 @@
 
 import { z } from "zod"
 
+// registerSchema は、ただの変数ではなく、Zod が作成したバリデーション機能を持つオブジェクト
 export const registerSchema = z.object({
   name: z.string().min(1, "名前は必須です"),
   email: z.string({ required_error: "メールアドレスは必須です" })

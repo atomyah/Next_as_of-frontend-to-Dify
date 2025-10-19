@@ -16,19 +16,35 @@ export const config = {
     // https://nextjs.org/docs/app/building-your-application/routing/
     matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
 };
-
-
 ////////////////////////////////////////////////
 // ## matcher設定:
-// この正規表現はミドルウェアを実行するパスを指定：
+// この正規表現はミドルウェアを実行しないパスを指定：
+// 実行されないページ例：
+// /api/* - API Routes
+// /_next/static/* - 静的ファイル
+// /_next/image/* - 最適化画像
+// *.png - PNG画像ファイル
+
 // ミドルウェア実行するページ例：
 // / (ホームページ)
 // /dashboard
 // /login
 // /about など
 
-// 実行されないページ例：
-// /api/* - API Routes
-// /_next/static/* - 静的ファイル
-// /_next/image/* - 最適化画像
-// *.png - PNG画像ファイル
+// ## 実行タイミング
+// ```
+// ユーザーがページにアクセス
+//     ↓
+// matcher でパスをチェック
+//     ↓
+// 一致する？
+//     ├─ YES → middleware.ts 実行
+//     │         ↓
+//     │    auth.config.ts の authorized() 実行（auth.config.tsでは主に認証ガードのようなことをしている）
+//     │         ↓
+//     │    アクセス許可 or リダイレクト
+//     │
+//     └─ NO → middleware.ts をスキップ
+//               ↓
+//          通常通りページ表示
+// ```

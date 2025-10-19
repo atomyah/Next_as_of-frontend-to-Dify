@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////////
-/// このコードは Next.js のサーバーアクション で、ユーザー認証（ログイン）処理をする
-// ログインフォームコンポーネントから呼び出されユーザーが入力したメールアドレスとパスワードでの認証を試み、
+/// このコードは Next.jsのサーバーアクション で、ユーザーのログイン認証を処理をする
+// ログインフォームコンポーネント(LoginForm.tsx)から呼び出されユーザーが入力したメールアドレスとパスワードでの認証を試み、
 // 認証が成功すればログイン状態になり、失敗すれば適切なエラーメッセージをユーザーに表示
 // NextAuth.js（現在のAuth.js）を使った認証システムの一部として機能
 /////////////////////////////////////////////////////////////////////////
@@ -18,7 +18,7 @@ export async function authenticate(
     try {
         await signIn('credentials', {// signIn('credentials', formData)でユーザーのログイン情報（メールアドレスとパスワード）を検証
         ...Object.fromEntries(formData), // FormDataオブジェクトを通常のJavaScriptオブジェクトに変換し、スプレッド構文(...): オブジェクトのプロパティを展開。
-        // これにより、formDataからemailとpasswordの値を取得できる(例: { email: "user@example.com", password: "password123" })
+        // これにより、formDataからemailとpasswordの値を取得できる（例: { email: "user@example.com", password: "password123" })
         redirect: false,    // 自動リダイレクトを無効化
     }) 
         redirect('/dashboard'); // ログイン成功時はダッシュボードにリダイレクト

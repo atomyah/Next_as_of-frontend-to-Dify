@@ -11,6 +11,18 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  //ESLintエラーの解消のため、ignoresセクションを追加
+  {
+    ignores: [
+      "src/generated/**/*",
+      "**/generated/**/*",
+      "**/*.min.js",
+      "node_modules/**/*",
+      ".next/**/*",
+      "out/**/*",
+      "dist/**/*"
+    ],
+  },  
 ];
 
 export default eslintConfig;
