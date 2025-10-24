@@ -1,0 +1,120 @@
+[userIdを使ってDifyと通信]
+Difyの「Apiアクセス」の参考項目は「チャットメッセージを送信」「会話履歴メッセージを取得」「会話を取得」
+会話1回目テストcurl:
+--
+curl -X POST 'http://localhost/v1/chat-messages' \
+--header 'Authorization: Bearer app-' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+"inputs": {},
+"query": "ChatGPTの新機能を教えて",
+"response_mode": "blocking",
+"conversation_id": "",
+"user": "abc-123"
+}' > chatflow_1.txt
+>>>>>>以下出力結果：
+{"event": "message", "task_id": "819efb61...", "id": "b733f...", "message_id": "b733f60....", "conversation_id": "dcb8267c-ff2d-44cd-87c7-08bb84ec5072", "answer":。。。
+********************
+********************
+会話2回目テストcurl:(上記の出力で得たconversation_idをペースト）
+--
+curl -X POST 'http://localhost/v1/chat-messages' \
+--header 'Authorization: Bearer app-' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+"inputs": {},
+"query": "ChatGPTの新機能を教えて",
+"response_mode": "blocking",
+"conversation_id": "dcb8267c-ff2d-44cd-87c7-08bb84ec5072",
+"user": "abc-123"
+}' | jq -r '.answer'	← ユニコード文字化けを日本語表示してくれる。インストール必要(sudo apt install jq)
+>>>>>>> 以下出力結果：
+最近のChatGPTの新機能について、以下の点をお伝えします（2023年10月時点の情報）：
+1. **画像入力機能**: ユーザーが画像をアップロードすることで、その内容を分析し.....
+
+
+会話履歴メッセージ(messages)を取得
+	このエンドポイントは特定の会話内の実際のメッセージ履歴を取得.特定のconversation_idをパラメータとして指定する必要あり
+--
+curl -X GET 'http://localhost/v1/messages?user=abc-123&conversation_id=dcb8267c-ff2d-44cd-87c7-08bb84ec5072' \
+--header 'Authorization: Bearer app-' | jq -r '.'
+>>>>>>>  以下出力結果：
+ーーーーーーーーーーーーーーーーーーーーーーーーーー
+{
+  "limit": 20,
+  "has_more": false,
+  "data": [
+    {
+      "id": "b733f60e-3a1d-4b11-8aea-3e85a8286f31",
+      "conversation_id": "dcb8267c-ff2d-44cd-87c7-08bb84ec5072",
+      "parent_message_id": "00000000-0000-0000-0000-000000000000",
+      "inputs": {},
+      "query": "ChatGPTの新機能を教えて",
+      "answer": "私の知識は2023年10月までのものであり、その時点での情報に基づいてお答えします。ChatGPTの新機能には、以下のようなものが含まれます：\n\n1. **画像理解**: ユーザーが画像をアップロードすると、その内容を理解し、説明や関連情報を提供する機能。\n   \n2. **コード補完**: プログラミング関連の質問に対して、コードの例や解説を提供する能力が向上しました。\n\n3. **会話のカスタマイズ**: ユーザーが好みのスタイルやトーンを指定すると、それに応じた応答を生成する機能。\n\n4. **長文の処理能力**: より長いテキストを処理し、要約したり、重要なポイントを抽出する能力が向上しました。\n\n5. **プラグイン機能**: 特定の外部サービスやデータにアクセスするためのプラグインを利用できるようになり、より多様な情報を提供できるようになっています。\n\nこれらの機能は進化し続けているため、最新の情報については公式の発表や更新情報をご確認ください。",
+      "message_files": [],
+      "feedback": null,
+      "retriever_resources": [],
+      "created_at": 1761027985,
+      "agent_thoughts": [],
+      "status": "normal",
+      "error": null
+    },
+    {
+      "id": "5de2969f-079f-4755-b289-dbf5615728f2",
+      "conversation_id": "dcb8267c-ff2d-44cd-87c7-08bb84ec5072",
+      "parent_message_id": "00000000-0000-0000-0000-000000000000",
+      "inputs": {},
+      "query": "ChatGPTの新機能を教えて",
+      "answer": "2023年10月時点でのChatGPTの新機能についていくつかご紹介します。これらの機能は、ユーザー体験を向上させるために追加されたものです。\n\n1. **画像理解機能**: ユーザーが画像をアップロードすることで、その内容を解析し、説明や関連情報を提供することができる機能です。これにより、視覚的な情報に基づいた対話が可能になります。\n\n2. **マルチモーダル機能**: テキストだけでなく、画像や音声など複数の形式の情報を扱う能力が向上し、より豊かな対話が可能になりました。\n\n3. **プラグインのサポート**: 特定の外部サービスと連携するプラグインを使用することで、リアルタイムでデータを取得したり、特定の機能を追加したりすることができます。\n\n4. **ブラウジング機能**: インターネット上の最新情報を検索し、リアルタイムで情報を取得することができる機能。この機能により、最新のニュースや情報を提供することが可能です。\n\n5. **カスタマイズ可能な応答**: ユーザーが求めるスタイルやトーンに応じて、応答をカスタマイズする機能が強化されました。これにより、ユーザーのニーズにより合った対話が実現します。\n\nこれらの機能は、さらなる改良や新しい機能の追加が行われる可能性がありますので、公式の情報をチェックすることをお勧めします。",
+      "message_files": [],
+      "feedback": null,
+      "retriever_resources": [],
+      "created_at": 1761028267,
+      "agent_thoughts": [],
+      "status": "normal",
+      "error": null
+    },
+ーーーーーーーーーーーーーーーーーーーーーーーーーー
+ひとつずつの会話にqueryとanswerがあるのを確認できる
+
+
+会話(conversations)を取得。
+	この会話（conversations)は現在のユーザー（user）の会話リストを取得する。あくまで会話リストなので会話の内容（answer）は含まない
+--
+curl -X GET 'http://localhost/v1/conversations?user=abc-123&last_id=&limit=50' \
+--header 'Authorization: Bearer app-' | jq -r '.'
+>>>>>> 出力結果：
+{
+  "limit": 50,
+  "has_more": false,
+  "data": [
+    {
+      "id": "dcb8267c-ff2d-44cd-87c7-08bb84ec5072",
+      "name": "新機能について尋ねている",
+      "inputs": {},
+      "status": "normal",
+      "introduction": "",
+      "created_at": 1761027985,
+      "updated_at": 1761029102
+    },
+    {
+      "id": "fa23085b-378f-4ffe-b16d-f65de3069fdd",
+      "name": "ChatGPTの新機能を教えて",
+      "inputs": {},
+      "status": "normal",
+      "introduction": "",
+      "created_at": 1761027633,
+      "updated_at": 1761027633
+    },
+    {
+      "id": "39e27c21-facf-4a49-920c-b2a5bf054238",
+      "name": "ChatGPTの新機能を教えて",
+      "inputs": {},
+      "status": "normal",
+      "introduction": "",
+      "created_at": 1761027530,
+      "updated_at": 1761027530
+    },
+ーーーーーーーーーーーーーーーーーーーーーーーーーー
+ここでは、ややこしいのだが"conversation_id"が"id"として表示される。
+nameは会話のタイトル

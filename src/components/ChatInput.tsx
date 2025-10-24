@@ -1,7 +1,14 @@
+/////////////////////////////////////////////////////////////////
+////// http://localhost:3000/chatを表示するコンテナ（RCC）に埋め込まれているテキスト入力画面
+////// ChatContainerから呼び出され、propsでuserIdを受け取っている
+/////////////////////////////////////////////////////////////////
+
 import { Textarea } from "./ui/textarea"
 import { Button } from "./ui/button"
+import type {ChatProps} from "@/types/chat"
 
-export default function ChatInput() {
+export default function ChatInput( {userId}: ChatProps ) {
+  // console.log('■ChatInputのuserIdの中身：', userId);
   return (
     <div>
       <form className="flex flex-col gap-2 px-4 max-w-4xl mx-auto w-full">

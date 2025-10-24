@@ -52,4 +52,15 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
             }
         })
     ],
+    // セッションにユーザーIDを含めるためのコールバック関数.ユーザIDはtoken.subに格納されている。
+    callbacks: {
+        async session({ session, token }) {
+            // console.log('■auth.ts内session:', session)
+            // console.log('■auth.ts内トークン:', token)    // tokenの中身をブラウザターミナルで確認できる。subという項目にユーザーIDが入っている。
+            if (session.user) {
+                session.user.id = token.sub as string // ユーザーID（token.sub）をセッションに追加
+            }
+            return session
+        }
+    }
 });

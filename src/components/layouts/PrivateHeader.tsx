@@ -20,7 +20,7 @@ import { auth } from "@/auth"// auth.tsの{ auth, signIn, signOut, handlers }の
 export default async function PrivateHeader() {
     const session = await auth(); // ログイン情報（ユーザー情報）をsessionに格納
     /// デバッグ用コード
-    console.log('■sessionの中身：', 'Session:', JSON.stringify(session, null, 2));
+    console.log('■PrivateHeader.tsxのsessionの中身：', 'Session:', JSON.stringify(session, null, 2));
     // 表示結果：(Claudeはidも含めるべきだとauth.config.tsのcallbacks:関数の変更を提示している)
     //  {
     //     "user": {
