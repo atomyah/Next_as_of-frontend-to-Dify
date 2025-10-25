@@ -1,18 +1,25 @@
-import { create } from 'zustand'
-import { persist, createJSONStorage } from 'zustand/middleware'
+/////////////////////////////////////////////////////////////////
+////// Zustandを使ったチャットの状態管理ストア
+////// 永続化のためにlocalStorageを使用
+/////////////////////////////////////////////////////////////////
 
-// メッセージ
+
+import { create } from 'zustand'
+// localStorageに保存するためのmiddleware。永続化のためのpersistと、JSON形式でlocalStrageに保存するためのcreateJSONStorageをインポート
+import { persist, createJSONStorage } from 'zustand/middleware' 
+
+// メッセージの型定義
 export type Message = {
     id?: string;
     role: 'user' | 'assistant';
     content: string;
 }
 
-// 会話リスト
+// 会話リストの型定義
 export type Conversation = {
     id?: string;
     name: string;
-    updated_at: number;
+    updatedAt: number;
 }
 
 // ストアの状態の型を定義
@@ -24,7 +31,7 @@ interface ChatStore {
     conversations: Conversation[];
 
     // アクション
-    setConversationId: (id: string) => void;
+    setConversationId: (id: string | null) => void;
     setMessages: (message: Message[]) => void;
     addMessage: (message: Message) => void;
     clearMessage: () => void;
@@ -33,8 +40,10 @@ interface ChatStore {
     resetStore: () => void
 }
 
-// Zustandストアを作成
+// Zustandのストアの作成
+// persistを使うために()()と書く(カリー化)
 export const useChatStore = create<ChatStore>()(
+    // persist(()=>({...}), {...}) の形で使用.第1引数{...}にストアとアクションの定義。第2引数{...}に永続化の設定を渡す
     persist((set)=>({
         // 初期状態
         conversationId: null,
@@ -43,7 +52,7 @@ export const useChatStore = create<ChatStore>()(
         isLoading: false,
 
         // アクション
-        setConversationId: (id: string) => set({ conversationId: id }),
+        setConversationId: (id: string | null) => set({ conversationId: id }),
         setMessages: (messages: Message[]) => set({ messages }),
         addMessage: (message: Message) => set((state)=>{
             return { messages: [...state.messages, message]}
