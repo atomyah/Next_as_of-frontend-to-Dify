@@ -6,7 +6,7 @@
 ////// セクション４-67にて、conversationIdの受け取りと、Dify API呼び出し部分の修正を追加
 //////       → body: JSON.stringify({query: input, userId: userId, conversation_id: conversationId || ''})
 //////
-////// セクション④ー68にて、src/lib/conversation.tsのcreateConversation, updateConversation関数を呼び出す部分を追加
+////// セクション④ー68にて、src/lib/conversation.tsファイルを作成、createConversation, updateConversation関数を呼び出す部分を追加
 /////////////////////////////////////////////////////////////////
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -56,7 +56,8 @@ export async function POST(request: NextRequest){   // 関数名をPOSTにする
                 query: query,
                 response_mode: 'blocking',
                 user: userId,
-                conversation_id: conversationId || '' // 左側がDifyから来るキー名で右側がChatInputから来るキー名.初回会話ではconversationIdは無いので|| nullしてる
+                conversation_id: conversationId || '' // 左側がDifyから来るキー名で右側がChatInputから来るキー名.
+                // 初回会話ではconversationIdは無いので|| nullしてる
             })
         })
 

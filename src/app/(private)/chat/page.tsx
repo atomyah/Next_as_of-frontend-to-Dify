@@ -13,6 +13,11 @@ export default async function ChatPage() {
   const userId = session?.user?.id as string
 
   return (
-    <ChatContainer userId={userId} />
+    <ChatContainer 
+      isNewChat={true}
+      initialMessages={[]}
+      conversationId={null}
+      userId={userId}
+    />
   )
 }
