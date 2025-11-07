@@ -1,7 +1,8 @@
 /////////////////////////////////////////////////////////////////
 ////// http://localhost:3000/chatを表示するページ（RSC）
 ////// ChatContainerにpropsでuserIdを渡している
-////// ちなみにChatSidebarはlayout.tsxに埋め込まれている。
+////// ちなみにChatInputはChatContainerに埋め込まれている
+////// ChatSidebarはlayout.tsxに埋め込まれている。
 /////  layout.tsxの{children}にこのpage.tsxが入る感じ。
 /////////////////////////////////////////////////////////////////
 

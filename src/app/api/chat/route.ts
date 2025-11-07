@@ -6,7 +6,7 @@
 ////// セクション４-67にて、conversationIdの受け取りと、Dify API呼び出し部分の修正を追加
 //////       → body: JSON.stringify({query: input, userId: userId, conversation_id: conversationId || ''})
 //////
-////// セクション④ー68にて、src/lib/conversation.tsファイルを作成、createConversation, updateConversation関数を呼び出す部分を追加
+////// セクション4ー68にて、src/lib/conversation.tsファイルを作成、createConversation, updateConversation関数を呼び出す部分を追加
 /////////////////////////////////////////////////////////////////
 
 import { NextRequest, NextResponse } from 'next/server';

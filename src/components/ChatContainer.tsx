@@ -28,18 +28,23 @@ export default function ChatContainer({
     setConversationId,
     setMessages,
     clearMessage
-  } = useChatStore(); // Zustandのmessagesからメッセージ一覧とロloadingからディング状態を取得
+  } = useChatStore(); // Zustandのmessagesからメッセージ一覧とloadingからロディング状態を取得
+  
+
+
   
   ///// 以下、自動スクロールのための呪文 /////
   const messagesEndRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth'})
   }, [messages]) // Zustandのストアmessagesが更新されるたびにスクロールされる
   // messagesEndRefはuseRefを使った参照ポイント。下の<div ref={messagesEndRef} />で使用
   ///// 以下、自動スクロールのための呪文～ここまで /////
-  
 
+
+
+
+  //// 新規チャットの場合（isNewChatがtrueの時。/chat/page.tsxからpropsで渡ってくる）会話ストアをリセットする ////
   useEffect(() => {
     if (isNewChat) {
       // 新規チャットの場合、会話IDをnullに設定し、メッセージをクリア
@@ -47,6 +52,9 @@ export default function ChatContainer({
       clearMessage();
     }
   }, [isNewChat, clearMessage, setConversationId]);
+  //// 新規チャットの場合、会話ストアをリセットする～ここまで /////
+
+
 
 
   return (
