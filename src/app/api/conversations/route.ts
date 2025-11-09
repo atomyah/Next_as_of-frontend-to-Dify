@@ -3,12 +3,14 @@
 ////// ChatInput.tsxのcallDifyApi関数から呼び出されるAPIルートハンドラ
 ////// bodyの中にはqueryとuserIdが入っている→ body: JSON.stringify({query: input, userId: userId})
 //////
-////// セクション４-67にて、conversationIdの受け取りと、Dify API呼び出し部分の修正を追加
+////// セクション４-６７にて、conversationIdの受け取りと、Dify API呼び出し部分の修正を追加
 //////       → body: JSON.stringify({query: input, userId: userId, conversation_id: conversationId || ''})
 //////
-////// セクション④ー68にて、src/lib/conversation.tsファイルを作成、createConversation, updateConversation関数を呼び出す部分を追加
+////// セクション４ー６８にて、src/lib/conversation.tsファイルを作成、createConversation, updateConversation関数を呼び出す部分を追加
 //////
 ////// セクション４－７５にて「会話リスト（会話(conversations)）をDifyから取得するコードに変更
+////// Dify APIエンドポイントhttp://localhost/v1/conversations からGETでfetch。
+////// ChatSidebarコンポーネントからawait fetch(`/api/conversations?userId=${userId}`)で呼び出される。
 /////////////////////////////////////////////////////////////////
 
 import { NextRequest, NextResponse } from 'next/server';

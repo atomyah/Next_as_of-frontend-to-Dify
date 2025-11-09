@@ -1,8 +1,9 @@
 /////////////////////////////////////////////////////////////////////////
 ////// (private)/chat/配下ページのレイアウト。
 ////// propsでuserIdを渡している(セクション４－７５)
-////// app/(private)/chat/layout.tsxで、<ChatSidebar userId={userId} />
-////// のように呼び出されている
+////// app/(private)/chat/layout.tsxで、<ChatSidebar userId={userId} />のように呼び出されている
+////// セクション４－７６、７７で会話履歴取得。
+////// await fetch(`/api/conversations?userId=${userId}`)でapi/conversations/route.tsをルートハンドラーを叩いてる
 /////////////////////////////////////////////////////////////////////////
 'use client';
 
@@ -19,7 +20,7 @@ export default function ChatSidebar({userId}: ChatProps) {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const { setConversations, conversations, conversationId, resetStore } = useChatStore();
+  const { setConversations, conversations, conversationId, resetStore } = useChatStore(); // Zustandから各ストアの値を受け取る
 
   const fetchConversations = async () => {
     try {
@@ -72,32 +73,32 @@ export default function ChatSidebar({userId}: ChatProps) {
         </Button>
       </div>
       <div className="flex-1 overflow-y-auto px-2 py-4">
-        <h3 className="text-sm font-medium">会話履歴</h3>
-      </div>
-      {isLoading && conversations.length === 0 ? (
-        <div className="text-center py-4 text-gray-500">読み込み中...</div>
-      ) : conversations.length === 0 ? (
-        <div className="text-center py-4 text-gray-500">会話がありません</div>
-      ) : (
-        <ul className="space-y-1">
-          {conversations.map((conversation) => (
-            <li key={conversation.id} className="relative">
-              <Link href={`/chat/${conversation.id}`}
-                className={`
-                  flex items-center p-2 my-2 text-sm rounded-lg hover:bg-indigo-200
-                  ${conversationId === conversation.id ? 'bg-blue-100 border-l-4 border-blue-500' : ''}`}
-                  // conversationId（現在開いている会話のID）と conversation.id（リスト内の各会話のID）が一致する場合、bg-slate-200（薄いグレーの背景色）を適用
-                >
-                  <div className="flex-1">
-                    <p className="truncate font-medium">{conversation.name}</p>
-                  </div>
-                </Link>
-            </li>
-          ))}
+        <h3 className="text-base text-indigo-700 font-medium mb-4">会話履歴</h3>
+        {isLoading && conversations.length === 0 ? (
+          <div className="text-center py-4 text-gray-500">読み込み中...</div>
+        ) : conversations.length === 0 ? (
+          <div className="text-center py-4 text-gray-500">会話がありません</div>
+        ) : (
+          <ul className="space-y-1">
+            {conversations.map((conversation) => (
+              <li key={conversation.id} className="relative">
+                <Link href={`/chat/${conversation.id}`}
+                  className={`
+                    flex items-center p-2 my-2 text-sm rounded-lg hover:bg-indigo-200
+                    ${conversationId === conversation.id ? 'bg-indigo-500 text-white' : ''}`}
+                    // conversationId（現在開いている会話のID）と conversation.id（リスト内の各会話のID）が一致する時（それを選択している時）bg-indigo-500 text-whiteを適用
+                    // conversationIdは２３行目const { conversationId } = useChatStore()で読み取っている。
+                  >
+                    <div className="flex-1">
+                      <p className="truncate font-medium">{conversation.name}</p>
+                    </div>
+                  </Link>
+              </li>
+            ))}
 
-        </ul>
+          </ul>
       )}
-
+      </div>
     </div>
   )
 }

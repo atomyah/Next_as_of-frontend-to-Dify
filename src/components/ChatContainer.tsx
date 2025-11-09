@@ -14,11 +14,12 @@ import ChatInput from "./ChatInput";
 import type {ChatContainerProps} from "@/types/chat"
 import { useEffect, useRef} from 'react'
 import { useChatStore } from '@/store/chatStore'
-import { clear } from "console";
 
 export default function ChatContainer({
   isNewChat,
-  userId
+  userId,
+  initialMessages, 
+  conversationId
 }: ChatContainerProps) {
   
   const { 
@@ -42,17 +43,19 @@ export default function ChatContainer({
   ///// 以下、自動スクロールのための呪文～ここまで /////
 
 
-
-
-  //// 新規チャットの場合（isNewChatがtrueの時。/chat/page.tsxからpropsで渡ってくる）会話ストアをリセットする ////
-  useEffect(() => {
-    if (isNewChat) {
-      // 新規チャットの場合、会話IDをnullに設定し、メッセージをクリア
-      setConversationId('');
-      clearMessage();
+  useEffect(()=>{
+    if(isNewChat){ 
+        clearMessage()
+        setConversationId('') 
     }
-  }, [isNewChat, clearMessage, setConversationId]);
-  //// 新規チャットの場合、会話ストアをリセットする～ここまで /////
+    // propsからconversationIdがあれば設定
+    if(conversationId){
+      setConversationId(conversationId) 
+    }
+    // propsでinitialMesssagesがあれば設定
+    if(initialMessages && initialMessages.length > 0 ){
+      setMessages(initialMessages) }
+  },[isNewChat, clearMessage, setConversationId, conversationId, setMessages])
 
 
 
